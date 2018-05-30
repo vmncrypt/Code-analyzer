@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  body
+    div
+      .jumbotron(style='padding:40px;')
+        h1 MOB Code Analyser
+        p Currently uses gitinspector then runs git-of-theseus
+        p(onclick="myFunc('obj')")
+          a.btn.btn-primary.btn-lg(href='#', id="myButton", role='button') Run Scan
+          a.btn.btn-primary.btn-lg(href='/exit', role='button') Close MCA
+          a.btn.btn-primary.btn-lg(href='/ins', role='button') Run Gitinspector
+          a.btn.btn-primary.btn-lg(href='/jsongen', role='button') Generate JSON files
+          a.btn.btn-primary.btn-lg(href='/plotgen', role='button') Generate Stack Plot Chart
+          a.btn.btn-primary.btn-lg(href='/survgen', role='button') Generate Survival Plot Chart
+        p Stack Plot Chart
+        img(src='/images/stack.png', alt='#', width=800)
+        p Survival Plot Chart
+        img(src='/images/survival.png', alt='#', width=800)
+  footer
+    div
+      nav.navbar-inverse.navbar-static-bottom
+        a.navbar-brand(href='/') Made by Leon
