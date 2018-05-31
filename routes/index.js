@@ -45,6 +45,17 @@ inspector.end(function (err) {
     }
 });
 
+// var ProgressBar = require('progress');
+
+// var bar = new ProgressBar(':bar', { total: 100 });
+// var timer = setInterval(function () {
+//   bar.tick();
+//   if (bar.complete) {
+//     console.log('\ncomplete\n');
+//     clearInterval(timer);
+//   }
+// }, 1000);
+
 router.get('/', (req, res) => {
   //CREATE PUG PAGE AND REPLACE INDEX HERE
   let pageInfo = {};
@@ -56,16 +67,28 @@ router.get('/exit', function (req, res, next) {
   process.exit(1);
 });
 
+// router.get('/ins', function (req, res, next) {
+//   runScript('./gitinspector ../analyses', function (err) {
+//     if (err) throw err;
+//     console.log('finished running Gitinspector');
+//   });
+// });
 router.get('/ins', function (req, res, next) {
-  runScript('./gitinspector.js', function (err) {
-    if (err) throw err;
-    console.log('finished running some-script.js');
+  console.log("*****RUNNING GITINSPECTOR*****");
+  dir = exec("node gitinspector.js ../analyses", function(err, stdout, stderr) {
+    if (err) {
+        console.log("Oi youve got an error there..", err.code);
+    }
+    console.log(stdout);
+  });
+  dir.on('exit', function (code) {
+    console.log("Successfully Completed!", code)
   });
 });
 
 router.get('/jsongen', function (req, res, next) {
-  dir = exec("git-of-theseus-analyze ../gitinspector --outdir public/", function(err, stdout, stderr) {
-    console.log("*****GENERATING JSON FILES*****");
+  console.log("*****GENERATING JSON FILES*****");
+  dir = exec("git-of-theseus-analyze ../analyses --outdir public/", function(err, stdout, stderr) {
     if (err) {
         console.log("Oi youve got an error there..", err.code);
     }
@@ -77,8 +100,8 @@ router.get('/jsongen', function (req, res, next) {
 });
 
 router.get('/plotgen', function (req, res, next) {
+  console.log("*****GENERATING STACK PLOT CHART*****");
   dir = exec("git-of-theseus-stack-plot public/cohorts.json --outfile public/images/stack.png", function(err, stdout, stderr) {
-    console.log("*****GENERATING STACK PLOT CHART*****");
     if (err) {
         console.log("Oi youve got an error there..", err.code);
     }
@@ -90,8 +113,8 @@ router.get('/plotgen', function (req, res, next) {
 });
 
 router.get('/survgen', function (req, res, next) {
+  console.log("*****GENERATING SURVIVAL PLOT CHART*****");
   dir = exec("git-of-theseus-survival-plot public/survival.json --outfile public/images/survival.png", function(err, stdout, stderr) {
-    console.log("*****GENERATING SURVIVAL PLOT CHART*****");
     if (err) {
         console.log("Oi youve got an there..", err.code);
     }
@@ -102,12 +125,30 @@ router.get('/survgen', function (req, res, next) {
   });
 });
 
-router.get('/registrations', (req, res) => {
-  Registration.find()
-    .then((registrations) => {
-      res.render('index', { title: 'Listing registrations', registrations });
-})
-    .catch(() => { res.send('Sorry! Something went wrong.'); });
+router.get('/authgen', function (req, res, next) {
+  console.log("*****GENERATING AUTHOR STATISTICS FOR WITCHHUNT*****");
+  dir = exec("git-of-theseus-stack-plot public/authors.json --outfile public/images/authors.png", function(err, stdout, stderr) {
+    if (err) {
+        console.log("Oi youve got an there..", err.code);
+    }
+    console.log(stdout);
+  });
+  dir.on('exit', function (code) {
+    console.log("Successfully Completed!", code)
+  });
+});
+
+router.get('/extgen', function (req, res, next) {
+  console.log("*****GENERATING EXTENSION STATISTICS*****");
+  dir = exec("git-of-theseus-stack-plot public/exts.json --outfile public/images/exts.png", function(err, stdout, stderr) {
+    if (err) {
+        console.log("Oi youve got an there..", err.code);
+    }
+    console.log(stdout);
+  });
+  dir.on('exit', function (code) {
+    console.log("Successfully Completed!", code)
+  });
 });
 
 module.exports = router;

@@ -8,16 +8,29 @@ block content
         h1 MOB Code Analyser
         p Currently uses gitinspector then runs git-of-theseus
         p(onclick="myFunc('obj')")
-          a.btn.btn-primary.btn-lg(href='#', id="myButton", role='button') Run Scan
-          a.btn.btn-primary.btn-lg(href='/exit', role='button') Close MCA
+          a.btn.btn-primary.btn-lg(href='/', role='button', style={color: 'white', background: 'green'}) Refresh
+          ||
+          a.btn.btn-primary.btn-lg(href='/exit', role='button', style={color: 'white', background: 'red'}) Shutdown MCA
+          ||
           a.btn.btn-primary.btn-lg(href='/ins', role='button') Run Gitinspector
+          ||
           a.btn.btn-primary.btn-lg(href='/jsongen', role='button') Generate JSON files
+          ||
           a.btn.btn-primary.btn-lg(href='/plotgen', role='button') Generate Stack Plot Chart
+          ||
           a.btn.btn-primary.btn-lg(href='/survgen', role='button') Generate Survival Plot Chart
+          ||
+          a.btn.btn-primary.btn-lg(href='/authgen', role='button') Generate Author Statistics
+          ||
+          a.btn.btn-primary.btn-lg(href='/extgen', role='button') Generate Extension Statistics
         p Stack Plot Chart
         img(src='/images/stack.png', alt='#', width=800)
         p Survival Plot Chart
         img(src='/images/survival.png', alt='#', width=800)
+        p Author Statistics
+        img(src='/images/authors.png', alt='#', width=800)
+        p Extension Statistics
+        img(src='/images/exts.png', alt='#', width=800)
   footer
     div
       nav.navbar-inverse.navbar-static-bottom

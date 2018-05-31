@@ -2,9 +2,9 @@ const express = require('express')
 const routes = require('./routes/index');
 const path = require('path')
 const app = express()
-var childProcess = require('child_process');
+//var childProcess = require('child_process');
 //var sys = require('sys')
-var exec = require('child_process').exec;
+//var exec = require('child_process').exec;
 
 var requirejs = require('requirejs');
 
@@ -23,17 +23,6 @@ app.get('/',function(req,res){
   //__dirname : It will resolve to your project folder.
 });
 
-var ProgressBar = require('progress');
-
-var bar = new ProgressBar(':bar', { total: 100 });
-var timer = setInterval(function () {
-  bar.tick();
-  if (bar.complete) {
-    console.log('\ncomplete\n');
-    clearInterval(timer);
-  }
-}, 1000);
-
-function puts(error, stdout, stderr) { sys.puts(stdout) }
+//function puts(error, stdout, stderr) { sys.puts(stdout) }
 
 module.exports = app;
