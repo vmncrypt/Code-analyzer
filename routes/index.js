@@ -126,7 +126,7 @@ router.get('/survgen', function (req, res, next) {
 });
 
 router.get('/authgen', function (req, res, next) {
-  console.log("*****GENERATING AUTHOR STATISTICS FOR WITCHHUNT*****");
+  console.log("*****GENERATING AUTHOR STATISTICS*****");
   dir = exec("git-of-theseus-stack-plot public/authors.json --outfile public/images/authors.png", function(err, stdout, stderr) {
     if (err) {
         console.log("Oi youve got an there..", err.code);
@@ -141,6 +141,30 @@ router.get('/authgen', function (req, res, next) {
 router.get('/extgen', function (req, res, next) {
   console.log("*****GENERATING EXTENSION STATISTICS*****");
   dir = exec("git-of-theseus-stack-plot public/exts.json --outfile public/images/exts.png", function(err, stdout, stderr) {
+    if (err) {
+        console.log("Oi youve got an there..", err.code);
+    }
+    console.log(stdout);
+  });
+  dir.on('exit', function (code) {
+    console.log("Successfully Completed!", code)
+  });
+});
+router.get('/rmjson', function (req, res, next) {
+  console.log("*****DELETING JSON DATA FILES*****");
+  dir = exec("rm -rf public/*.json", function(err, stdout, stderr) {
+    if (err) {
+        console.log("Oi youve got an there..", err.code);
+    }
+    console.log(stdout);
+  });
+  dir.on('exit', function (code) {
+    console.log("Successfully Completed!", code)
+  });
+});
+router.get('/rmpic', function (req, res, next) {
+  console.log("*****DELETING CHART IMAGES*****");
+  dir = exec("rm -rf public/images/*.png", function(err, stdout, stderr) {
     if (err) {
         console.log("Oi youve got an there..", err.code);
     }

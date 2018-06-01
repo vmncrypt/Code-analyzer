@@ -1,28 +1,32 @@
 extends layout
 
 block content
-
   body
     div
       .jumbotron(style='padding:40px;')
         h1 MOB Code Analyser
         p Currently uses gitinspector then runs git-of-theseus
-        p(onclick="myFunc('obj')")
-          a.btn.btn-primary.btn-lg(href='/', role='button', style={color: 'white', background: 'green'}) Refresh
+        p
+          a.btn.btn-primary.btn-sm(href='/', role='button', style={color: 'white', background: 'green'}) Refresh
           ||
-          a.btn.btn-primary.btn-lg(href='/exit', role='button', style={color: 'white', background: 'red'}) Shutdown MCA
+          a.btn.btn-primary.btn-sm(href='/exit', role='button', style={color: 'white', background: 'red'}) Shutdown MCA
           ||
-          a.btn.btn-primary.btn-lg(href='/ins', role='button') Run Gitinspector
+          a.btn.btn-primary.btn-sm(href='/rmjson', role='button', style={color: 'white', background: 'red'}) Delete JSON Data
           ||
-          a.btn.btn-primary.btn-lg(href='/jsongen', role='button') Generate JSON files
+          a.btn.btn-primary.btn-sm(href='/rmpic', role='button', style={color: 'white', background: 'red'}) Delete Chart Images
           ||
-          a.btn.btn-primary.btn-lg(href='/plotgen', role='button') Generate Stack Plot Chart
+        p
+          a.btn.btn-primary.btn-sm(href='/ins', role='button') Run Gitinspector
           ||
-          a.btn.btn-primary.btn-lg(href='/survgen', role='button') Generate Survival Plot Chart
+          a.btn.btn-primary.btn-sm(href='/jsongen', role='button') Generate JSON files
           ||
-          a.btn.btn-primary.btn-lg(href='/authgen', role='button') Generate Author Statistics
+          a.btn.btn-primary.btn-sm(href='/plotgen', role='button') Generate Stack Plot Chart
           ||
-          a.btn.btn-primary.btn-lg(href='/extgen', role='button') Generate Extension Statistics
+          a.btn.btn-primary.btn-sm(href='/survgen', role='button') Generate Survival Plot Chart
+          ||
+          a.btn.btn-primary.btn-sm(href='/authgen', role='button') Generate Author Statistics
+          ||
+          a.btn.btn-primary.btn-sm(href='/extgen', role='button') Generate Extension Statistics
         p Stack Plot Chart
         img(src='/images/stack.png', alt='#', width=800)
         p Survival Plot Chart

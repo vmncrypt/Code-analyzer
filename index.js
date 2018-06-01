@@ -2,15 +2,10 @@ const express = require('express')
 const routes = require('./routes/index');
 const path = require('path')
 const app = express()
+
 //var childProcess = require('child_process');
 //var sys = require('sys')
 //var exec = require('child_process').exec;
-
-var requirejs = require('requirejs');
-
-requirejs.config({
-    nodeRequire: require
-});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug')
